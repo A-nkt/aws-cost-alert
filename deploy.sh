@@ -8,6 +8,6 @@ echo "deploy to pipeline"
 sam build
 
 sam deploy --template-file template.yaml  \
-    --stack-name $1-developer-tools-alert-cost \
+    --stack-name $1-alert-cost \
     --capabilities CAPABILITY_IAM \
     --parameter-overrides SlackWebhookUrl=$2
