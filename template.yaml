@@ -37,13 +37,13 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: app.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.10
       Environment:
         Variables:
           SLACK_WEBHOOK_URL: !Ref SlackWebhookUrl
       Role: !GetAtt BillingIamRole.Arn
       Layers:
-        - arn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-p39-requests:11
+        - arn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-p310-requests:4
       Events:
         NotifySlack:
           Type: Schedule
