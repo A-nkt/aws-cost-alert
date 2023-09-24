@@ -44,9 +44,6 @@ Resources:
       Role: !GetAtt BillingIamRole.Arn
       Layers:
         - arn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-p39-requests:11
-      Tags:
-        - Key: map-migrated
-          Value: migMCX7KD5RU8
       Events:
         NotifySlack:
           Type: Schedule
