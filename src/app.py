@@ -1,8 +1,9 @@
-import os
-import boto3
-import json
-import requests
 from datetime import datetime, timedelta, date
+import json
+import os
+import requests
+
+import boto3
 
 
 SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
