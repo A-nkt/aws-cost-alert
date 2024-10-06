@@ -1,13 +1,14 @@
 from datetime import datetime, timedelta, date
 import json
 import os
-import requests
 from typing import Union
 
 import boto3
+import requests
 
 
 SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
+REGION = 'ap-northeast-1'
 
 
 def get_total_billing(client: object) -> dict:
@@ -80,7 +81,7 @@ def get_total_cost_date_range() -> Union[str, str]:
 
 
 def lambda_handler(event, context) -> None:
-    client = boto3.client('ce', region_name='ap-northeast-1')
+    client = boto3.client('ce', region_name=REGION)
     # 合計とサービス毎の請求額を取得する
     total_billing = get_total_billing(client)
     service_billings = get_service_billings(client)
