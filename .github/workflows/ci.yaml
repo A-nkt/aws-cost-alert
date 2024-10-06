@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    types: [ opened, synchronize ]
+
+jobs:
+  run-ruff:
+    name: Check Ruff
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip
+
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+
+          git fetch
+          DIFF_FILES=$(git diff remotes/origin/${{ github.base_ref }}..HEAD --diff-filter=ACDMR --name-only "*.py")
+
+          for f in $DIFF_FILES; do
+            ruff check $f --output-format=github
+          done
